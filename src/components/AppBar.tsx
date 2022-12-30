@@ -184,11 +184,12 @@ function ResponsiveAppBar() {
               <NavDropdown.Item href="#action/3.2">
                 Add External Yield
               </NavDropdown.Item>
-              {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item> */}
+            </NavDropdown>
+          </Nav>
+          <Nav>
+            <NavDropdown title="Lang" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">English</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">தமிழ்</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
