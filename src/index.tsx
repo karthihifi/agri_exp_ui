@@ -28,11 +28,11 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
- <IntlProvider locale={locale} messages={Tamil} key={locale}>
+//  <IntlProvider locale={locale} messages={Tamil} key={locale}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </IntlProvider>
+  // </IntlProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -26,11 +26,14 @@ function AddProduct() {
       noValidate
       autoComplete="on"
     >
+      <Stack>
+        <h3><FormattedMessage id="app.ProductDetails"></FormattedMessage></h3>
+      </Stack>
       <Stack
         spacing={2}
         direction="column"
-        // justifyContent="flex-start"
-        // alignItems="flex-start"
+      // justifyContent="flex-start"
+      // alignItems="flex-start"
       >
         <div className="AddProduct-form">
           <Stack
@@ -47,16 +50,16 @@ function AddProduct() {
                   variant="standard"
                   required
                   id="outlined-required"
-                  label="Area"
-                  helperText="Enter Area"
+                  label={<FormattedMessage id="app.Area"></FormattedMessage>}
+                  helperText={<FormattedMessage id="app.EnterArea"></FormattedMessage>}
                 />
                 <TextField
                   required
                   size="small"
                   id="outlined-required"
-                  label="Date"
+                  label={<FormattedMessage id="app.Date"></FormattedMessage>}
                   type="date"
-                  helperText="Enter Date"
+                  helperText={<FormattedMessage id="app.EnterDate"></FormattedMessage>}
                   variant="standard"
                   defaultValue={dayjs().format("YYYY-MM-DD")}
                 />
@@ -64,16 +67,16 @@ function AddProduct() {
             </Stack>
             <Stack justifyContent="flex-start" alignItems="flex-start">
               <Typography variant="h6" gutterBottom>
-              <FormattedMessage id="app.ProductDetails"></FormattedMessage>
+                <FormattedMessage id="app.ProductClass"></FormattedMessage>
               </Typography>
               <Box>
                 <TextField
                   required
                   size="small"
                   id="outlined-required"
-                  label="Product"
+                  label={<FormattedMessage id="app.Product"></FormattedMessage>}
                   type="text"
-                  helperText="Enter Product name"
+                  helperText={<FormattedMessage id="app.EnterProduct"></FormattedMessage>}
                   variant="standard"
                   defaultValue="Banana"
                 />
@@ -82,9 +85,9 @@ function AddProduct() {
                   required
                   size="small"
                   id="outlined-required"
-                  label="Variety"
+                  label={<FormattedMessage id="app.Variety"></FormattedMessage>}
                   type="text"
-                  helperText="Enter Variety name"
+                  helperText={<FormattedMessage id="app.EnterVariety"></FormattedMessage>}
                   variant="standard"
                   defaultValue="Cavendish"
                 />
@@ -92,14 +95,14 @@ function AddProduct() {
             </Stack>
             <Stack justifyContent="flex-start" alignItems="flex-start">
               <Typography variant="h6" gutterBottom>
-              <FormattedMessage id="app.WeightDetails"></FormattedMessage>
+                <FormattedMessage id="app.WeightDetails"></FormattedMessage>
               </Typography>
               <Box>
                 <TextField
                   required
                   size="small"
                   type="number"
-                  label="Weight"
+                  label={<FormattedMessage id="app.Weight"></FormattedMessage>}
                   id="standard-start-adornment"
                   sx={{ m: 1, width: "25ch" }}
                   InputProps={{
@@ -108,7 +111,7 @@ function AddProduct() {
                     ),
                   }}
                   variant="standard"
-                  helperText="Enter Weight"
+                  helperText={<FormattedMessage id="app.EnterWeight"></FormattedMessage>}
                 />
 
                 <TextField
@@ -116,17 +119,17 @@ function AddProduct() {
                   size="small"
                   variant="standard"
                   id="outlined-required"
-                  label="No of Leaves"
+                  label={<FormattedMessage id="app.Leavesno"></FormattedMessage>}
                   type="number"
-                  helperText="Enter Leaves Qty"
+                  helperText={<FormattedMessage id="app.EnterLeavesno"></FormattedMessage>}
                 />
                 <TextField
                   variant="standard"
                   size="small"
                   id="outlined-required"
-                  label="Stem Weight"
+                  label={<FormattedMessage id="app.StemWeight"></FormattedMessage>}
                   type="number"
-                  helperText="Enter Stem Weight(approx)"
+                  helperText={<FormattedMessage id="app.EnterStemWght"></FormattedMessage>}
                 />
               </Box>
             </Stack>
@@ -134,7 +137,7 @@ function AddProduct() {
         </div>
 
         <Button sx={{ width: "25%" }} variant="contained">
-          Add Product
+          <FormattedMessage id="btn.AddProduct"></FormattedMessage>
         </Button>
       </Stack>
     </Box>

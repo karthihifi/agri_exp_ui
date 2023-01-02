@@ -1,5 +1,29 @@
 {
   "app.AreaDetails": "பகுதி விவரங்கள்",
   "app.ProductDetails": "விளைபொருள் விவரங்கள்",
-  "app.WeightDetails": "எடை விவரங்கள்"
+  "app.WeightDetails": "எடை விவரங்கள்",
+  "app.YieldDataPrep": "மகசூல் தரவு தயாரிப்பு",
+  "app.InternalYieldDataAdd": "உள் விளைச்சல் தரவு தயாரிப்பு",
+  "app.ExternalYieldDataAdd": "வெளிப்புற விளைச்சல் தரவு தயாரிப்பு",
+  "app.YieldStats":"மகசூல் புள்ளிவிவரங்கள்",
+  "app.Procurement":"கொள்முதல் தரவு",
+  "app.Area": "பகுதி",
+  "app.EnterArea": "பகுதியை உள்ளிடவும்",
+  "app.Date": "தேதி",
+  "app.EnterDate": "தேதியை உள்ளிடவும்",
+  "app.Product": "தயாரிப்பு",
+  "app.EnterProduct": "தயாரிப்பை உள்ளிடவும்",
+  "app.Variety": "வகை",
+  "app.EnterVariety": "வகுப்பை உள்ளிடவும்",
+  "app.Weight": "எடை",
+  "app.EnterWeight": "எடையை உள்ளிடவும்",
+  "app.Leavesno": "வாழை சீப்பு எண்ணிக்கை",
+  "app.EnterLeavesno": "எண்ணிக்கையை உள்ளிடவும்",
+  "app.StemWeight": "தண்டு எடை/விரயம்",
+  "app.EnterStemWght": "கழிவுகளை உள்ளிடவும்(தோராயமாக)",
+  "app.Language":"மொழி",
+  "app.ProductClass":"வகைப்பாடு விவரங்கள்",
+  "app.MassDataUpload": "வெகுஜன தரவு பதிவேற்றம்",
+
+  "btn.AddProduct":"தரவைச் சமர்ப்பிக்கவும்"
 }

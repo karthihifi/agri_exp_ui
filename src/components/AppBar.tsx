@@ -166,8 +166,19 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { DropdownSubmenu, NavDropdownMenu } from "react-bootstrap-submenu";
+import { FormattedMessage } from "react-intl";
+import "react-bootstrap-submenu/dist/index.css";
+import { MassUploadModal } from './MassUploadInfoModal'
 
-function ResponsiveAppBar() {
+import Tamil from "../lang/ta.json";
+import English from "../lang/en.json";
+
+interface Appbarprops {
+  setMessages: (locale: any) => void
+}
+
+const ResponsiveAppBar: React.FC<Appbarprops> = (props) => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -175,21 +186,36 @@ function ResponsiveAppBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Yield Stats</Nav.Link>
-            <Nav.Link href="#link">Procurement</Nav.Link>
-            <NavDropdown title="Yield Data" id="basic-nav-dropdown">
+            <Nav.Link href="#home">
+              <FormattedMessage id="app.YieldStats"></FormattedMessage>
+            </Nav.Link>
+            <Nav.Link href="#link">
+              <FormattedMessage id="app.Procurement"></FormattedMessage>
+            </Nav.Link>
+            <NavDropdown title={<FormattedMessage id="app.YieldDataPrep"></FormattedMessage>} id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">
-                Add Internal Yield
+                <FormattedMessage id="app.InternalYieldDataAdd"></FormattedMessage>
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
-                Add External Yield
+                <FormattedMessage id="app.ExternalYieldDataAdd"></FormattedMessage>
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">
+                <FormattedMessage id="app.MassDataUpload"></FormattedMessage>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav>
-            <NavDropdown title="Lang" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">English</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">தமிழ்</NavDropdown.Item>
+            <NavDropdown title={<FormattedMessage id="app.Language"></FormattedMessage>} id="basic-nav-dropdown" onSelect={(eve) => {
+              if (eve == 'ta') {
+                props.setMessages(Tamil)
+              } else {
+                props.setMessages(English)
+              }
+            }
+            }>
+              <NavDropdown.Item eventKey='en'>English</NavDropdown.Item>
+              <NavDropdown.Item eventKey='ta'>தமிழ்</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

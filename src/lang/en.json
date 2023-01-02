@@ -1,5 +1,29 @@
 {
   "app.AreaDetails": "Area Details",
   "app.ProductDetails": "Product Details",
-  "app.WeightDetails": "Weight Details"
+  "app.WeightDetails": "Weight Details",
+  "app.YieldDataPrep": "Yield Data Prep",
+  "app.InternalYieldDataAdd": "Add Internal Data",
+  "app.ExternalYieldDataAdd": "Add External Data",
+  "app.YieldStats": "Yield Stats",
+  "app.Procurement": "Procurement Stats",
+  "app.Area": "Area",
+  "app.EnterArea": "Enter Area",
+  "app.Date": "Date",
+  "app.EnterDate": "Enter Date",
+  "app.Product": "Product",
+  "app.EnterProduct": "Enter Product",
+  "app.Variety": "Variety",
+  "app.EnterVariety": "Enter Variety",
+  "app.Weight": "Weight",
+  "app.EnterWeight": "Enter Weight",
+  "app.Leavesno": "No of Leaves",
+  "app.EnterLeavesno": "Enter Leaves Qty",
+  "app.StemWeight": "Stem Weight",
+  "app.EnterStemWght": "Enter Stem Weight(approx)",
+  "app.Language":"Lang",
+  "app.ProductClass":"Product Classification Details",
+  "app.MassDataUpload": "Mass Data Upload",
+
+  "btn.AddProduct" : "Add Product"
 }
