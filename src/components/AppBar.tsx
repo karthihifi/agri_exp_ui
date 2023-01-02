@@ -169,12 +169,12 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { DropdownSubmenu, NavDropdownMenu } from "react-bootstrap-submenu";
 import { FormattedMessage } from "react-intl";
 import "react-bootstrap-submenu/dist/index.css";
-import { MassUploadModal } from './MassUploadInfoModal'
 
 import Tamil from "../lang/ta.json";
 import English from "../lang/en.json";
 
 interface Appbarprops {
+  handleMassUplModalOpen: () => void,
   setMessages: (locale: any) => void
 }
 
@@ -200,7 +200,7 @@ const ResponsiveAppBar: React.FC<Appbarprops> = (props) => {
                 <FormattedMessage id="app.ExternalYieldDataAdd"></FormattedMessage>
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
+              <NavDropdown.Item onClick={props.handleMassUplModalOpen}>
                 <FormattedMessage id="app.MassDataUpload"></FormattedMessage>
               </NavDropdown.Item>
             </NavDropdown>

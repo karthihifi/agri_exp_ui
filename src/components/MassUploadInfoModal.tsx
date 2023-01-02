@@ -5,54 +5,74 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Stack } from '@mui/system';
+import Link from '@mui/material/Link';
+import readXlsxFile from 'read-excel-file'
 
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 500,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
 };
 
-export default function MassUploadModal() {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+interface MassUploadProps {
+    MaassUplModalopen: boolean,
+    handleMassUplModalOpen: () => void,
+    handleMassUplModalClose: () => void
+}
+
+const MassUploadModal: React.FC<MassUploadProps> = (props) => {
 
     return (
         <div>
-            <Button onClick={handleOpen}>Open modal</Button>
+            {/* <Button onClick={handleOpen}>Open modal</Button> */}
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
-                open={open}
-                onClose={handleClose}
+                open={props.MaassUplModalopen}
+                onClose={props.handleMassUplModalClose}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
                     timeout: 500,
                 }}
             >
-                <Fade in={open}>
+                <Fade in={props.MaassUplModalopen}>
                     <Box sx={style}>
-                        <Typography id="transition-modal-title" variant="h6" component="h2">
-                            Mass Upload Data
-                        </Typography>
-                        <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                            Upload Data in the Below Specified Excel format.
-                            Click <a>here</a> to download the format.
-                        </Typography>
-                        <Button variant="contained" component="label">
-                            Upload
-                            <input hidden accept="image/*" multiple type="file" />
-                        </Button>
+                        <Stack spacing={2}>
+                            <Typography id="transition-modal-title" variant="h6" component="h2">
+                                Mass Upload Data
+                            </Typography>
+                            <Typography id="transition-modal-description" sx={{ mt: 4 }}>
+                                Upload Data in the Below Specified Excel format.
+                                Click <Link>here</Link> to download the format.
+                            </Typography>
+                            <Button variant="contained" component="label">
+                                Upload
+                                <input hidden accept=".xlsx" multiple type="file"
+                                    onChange={(eve) => {
+                                        console.log(eve.target.files)
+                                        let files: any = eve.target.files
+                                        let filedata: any[] = []
+                                        readXlsxFile(files[0]).then((rows) => {
+                                            console.log(rows, JSON.stringify(rows))
+                                            filedata.push(JSON.stringify(rows))
+                                        })
+                                        props.handleMassUplModalClose()
+                                    }} />
+                            </Button>
+                        </Stack>
                     </Box>
                 </Fade>
             </Modal>
         </div>
     );
 }
+
+export default MassUploadModal;
