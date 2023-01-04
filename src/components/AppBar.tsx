@@ -169,6 +169,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { DropdownSubmenu, NavDropdownMenu } from "react-bootstrap-submenu";
 import { FormattedMessage } from "react-intl";
 import "react-bootstrap-submenu/dist/index.css";
+import AgricultureIcon from '@mui/icons-material/Agriculture';
 import { Route, Routes, Link, BrowserRouter as Router } from "react-router-dom";
 
 import Tamil from "../lang/ta.json";
@@ -183,7 +184,10 @@ const ResponsiveAppBar: React.FC<Appbarprops> = (props) => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="/">
+          {/* React-Bootstrap */}
+          <AgricultureIcon sx={{ fontSize: 40 }}></AgricultureIcon>
+          </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
