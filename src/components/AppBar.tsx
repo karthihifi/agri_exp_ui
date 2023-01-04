@@ -169,32 +169,43 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { DropdownSubmenu, NavDropdownMenu } from "react-bootstrap-submenu";
 import { FormattedMessage } from "react-intl";
 import "react-bootstrap-submenu/dist/index.css";
+import { Route, Routes, Link, BrowserRouter as Router } from "react-router-dom";
 
 import Tamil from "../lang/ta.json";
 import English from "../lang/en.json";
 
 interface Appbarprops {
-  handleMassUplModalOpen: () => void,
-  setMessages: (locale: any) => void
+  handleMassUplModalOpen: () => void;
+  setMessages: (locale: any) => void;
 }
 
 const ResponsiveAppBar: React.FC<Appbarprops> = (props) => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">
+            <Nav.Link href="/">
               <FormattedMessage id="app.YieldStats"></FormattedMessage>
             </Nav.Link>
             <Nav.Link href="#link">
               <FormattedMessage id="app.Procurement"></FormattedMessage>
             </Nav.Link>
-            <NavDropdown title={<FormattedMessage id="app.YieldDataPrep"></FormattedMessage>} id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">
-                <FormattedMessage id="app.InternalYieldDataAdd"></FormattedMessage>
+            <NavDropdown
+              title={
+                <FormattedMessage id="app.YieldDataPrep"></FormattedMessage>
+              }
+              id="basic-nav-dropdown"
+            >
+              <NavDropdown.Item
+              // href="/AddIntProduct"
+              >
+                <Link to="/AddIntProduct" style={{ textDecoration: 'none' }}>
+                  <FormattedMessage id="app.InternalYieldDataAdd"></FormattedMessage>
+                </Link>
+                {/* <FormattedMessage id="app.InternalYieldDataAdd"></FormattedMessage> */}
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 <FormattedMessage id="app.ExternalYieldDataAdd"></FormattedMessage>
@@ -206,22 +217,25 @@ const ResponsiveAppBar: React.FC<Appbarprops> = (props) => {
             </NavDropdown>
           </Nav>
           <Nav>
-            <NavDropdown title={<FormattedMessage id="app.Language"></FormattedMessage>} id="basic-nav-dropdown" onSelect={(eve) => {
-              if (eve == 'ta') {
-                props.setMessages(Tamil)
-              } else {
-                props.setMessages(English)
-              }
-            }
-            }>
-              <NavDropdown.Item eventKey='en'>English</NavDropdown.Item>
-              <NavDropdown.Item eventKey='ta'>தமிழ்</NavDropdown.Item>
+            <NavDropdown
+              title={<FormattedMessage id="app.Language"></FormattedMessage>}
+              id="basic-nav-dropdown"
+              onSelect={(eve) => {
+                if (eve == "ta") {
+                  props.setMessages(Tamil);
+                } else {
+                  props.setMessages(English);
+                }
+              }}
+            >
+              <NavDropdown.Item eventKey="en">English</NavDropdown.Item>
+              <NavDropdown.Item eventKey="ta">தமிழ்</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-}
+};
 
 export default ResponsiveAppBar;
