@@ -29,43 +29,59 @@ function App() {
   const handleMassUplModalClose = () => setMaassUplModalopen(false);
 
   useEffect(() => {
-    axios
-      .get("https://us-central1-agriexp-db.cloudfunctions.net/app/YieldStat")
-      .then((res) => {
-        let ProductsData: YieldStat[] = res.data;
-        setYieldStat(ProductsData);
-        console.log(ProductsData);
-      });
+    const axiosrequest1 = axios.get('https://us-central1-agriexp-db.cloudfunctions.net/app/YieldStat');
+    const axiosrequest2 = axios.get('https://us-central1-agriexp-db.cloudfunctions.net/app/UserData');
+
+    axios.all([axiosrequest1, axiosrequest2]).then(axios.spread(function (res1, res2) {
+      let ProductsData: YieldStat[] = res1.data;
+      setYieldStat(ProductsData);
+      console.log(res1);
+      console.log(res2);
+      let UserData = res2.data
+      if (UserData.lang == 'English') {
+        setMessages(English)
+      } else if (UserData.lang == 'Tamil') {
+        setMessages(Tamil)
+      }
+    }));
+
+    // axios
+    //   .get("https://us-central1-agriexp-db.cloudfunctions.net/app/YieldStat")
+    //   .then((res) => {
+    //     let ProductsData: YieldStat[] = res.data;
+    //     setYieldStat(ProductsData);
+    //     console.log(ProductsData);
+    //   });
   }, []);
 
   return (
     <Router>
-    <div className="App">
-      <IntlProvider locale={locale} messages={messages} key={locale}>
-        <ResponsiveAppBar
+      <div className="App">
+        <IntlProvider locale={locale} messages={messages} key={locale}>
+          <ResponsiveAppBar
+            handleMassUplModalOpen={handleMassUplModalOpen}
+            setMessages={setMessages}
+          ></ResponsiveAppBar>
+          <Container>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <YieldProductStats ProductData={YieldStat}></YieldProductStats>
+                }
+              />
+              {/* <YieldProductStats ProductData={YieldStat}></YieldProductStats> */}
+              <Route path="/AddIntProduct" element={<AddProduct></AddProduct>} />
+              {/* <AddProduct></AddProduct> */}
+            </Routes>
+          </Container>
+        </IntlProvider>
+        <MassUploadModal
+          MaassUplModalopen={MaassUplModalopen}
+          handleMassUplModalClose={handleMassUplModalClose}
           handleMassUplModalOpen={handleMassUplModalOpen}
-          setMessages={setMessages}
-        ></ResponsiveAppBar>
-        <Container>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <YieldProductStats ProductData={YieldStat}></YieldProductStats>
-              }
-            />
-            {/* <YieldProductStats ProductData={YieldStat}></YieldProductStats> */}
-            <Route path="/AddIntProduct" element={<AddProduct></AddProduct>} />
-            {/* <AddProduct></AddProduct> */}
-          </Routes>
-        </Container>
-      </IntlProvider>
-      <MassUploadModal
-        MaassUplModalopen={MaassUplModalopen}
-        handleMassUplModalClose={handleMassUplModalClose}
-        handleMassUplModalOpen={handleMassUplModalOpen}
-      ></MassUploadModal>
-    </div>
+        ></MassUploadModal>
+      </div>
     </Router>
   );
 }
