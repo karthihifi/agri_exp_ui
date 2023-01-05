@@ -5,8 +5,8 @@
   "app.YieldDataPrep": "மகசூல் தரவு தயாரிப்பு",
   "app.InternalYieldDataAdd": "உள் விளைச்சல் தரவு தயாரிப்பு",
   "app.ExternalYieldDataAdd": "வெளிப்புற விளைச்சல் தரவு தயாரிப்பு",
-  "app.YieldStats":"மகசூல் புள்ளிவிவரங்கள்",
-  "app.Procurement":"கொள்முதல் தரவு",
+  "app.YieldStats": "மகசூல் புள்ளிவிவரங்கள்",
+  "app.Procurement": "கொள்முதல் தரவு",
   "app.Area": "பகுதி",
   "app.EnterArea": "பகுதியை உள்ளிடவும்",
   "app.Date": "தேதி",
@@ -21,9 +21,21 @@
   "app.EnterLeavesno": "எண்ணிக்கையை உள்ளிடவும்",
   "app.StemWeight": "தண்டு எடை/விரயம்",
   "app.EnterStemWght": "கழிவுகளை உள்ளிடவும்(தோராயமாக)",
-  "app.Language":"மொழி",
-  "app.ProductClass":"வகைப்பாடு விவரங்கள்",
+  "app.Language": "மொழி",
+  "app.ProductClass": "வகைப்பாடு விவரங்கள்",
   "app.MassDataUpload": "வெகுஜன தரவு பதிவேற்றம்",
 
-  "btn.AddProduct":"தரவைச் சமர்ப்பிக்கவும்"
+  "btn.AddProduct": "தரவைச் சமர்ப்பிக்கவும்",
+  "btn.Upload": "தரவைச் பதிவேற்றவும்",
+
+  "YieldProdStats.Season": "பருவகாலம்",
+  "YieldProdStats.Area": "பரப்பளவு",
+  "YieldProdStats.Createdon": "அறுவடை நாள்",
+  "YieldProdStats.Product": "விளைபொருள்",
+  "YieldProdStats.Variety": "வகை",
+  "YieldProdStats.NetWeight": "மொத்த எடை",
+  "YieldProdStats.NoofLeaves": "சீப்பு எண்ணிக்கை",
+
+  "MassUpl.Header": "பெருந்திரள் பதிவேற்றம்",
+  "MassUpl.body": "கீழே குறிப்பிடப்பட்ட எக்செல் வடிவத்தில் தரவைப் பதிவேற்றவும்.வடிவத்தைப் பதிவிறக்க <Link>இங்கே</Link> கிளிக் செய்யவும்"
 }

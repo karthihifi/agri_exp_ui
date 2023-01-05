@@ -2,47 +2,79 @@ import * as React from "react";
 import { YieldStat, RespData } from "./Interface";
 import {
   DataGrid,
+  GridColumnHeaderParams,
   GridColDef,
   GridValueGetterParams,
   GridToolbar,
 } from "@mui/x-data-grid";
+import { FormattedMessage } from "react-intl";
 
 interface YieldProductStatsProps {
   ProductData: YieldStat[];
 }
 const columns: GridColDef[] = [
-  { field: "Season", headerName: "Season", width: 70 },
-  { field: "Area", headerName: "Area", width: 130 },
-  { field: "Createdon", headerName: "Created on", width: 130 },
+  {
+    field: "Season",
+    // headerName: "Season",
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <FormattedMessage id="YieldProdStats.Season"></FormattedMessage>
+    ),
+    type: "number",
+    width: 120,
+  },
+  {
+    field: "Area",
+    // headerName: "Area",
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <FormattedMessage id="YieldProdStats.Area"></FormattedMessage>
+    ),
+    width: 130,
+  },
+  {
+    field: "Createdon",
+    // headerName: "Created on"
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <FormattedMessage id="YieldProdStats.Createdon"></FormattedMessage>
+    ),
+    width: 130,
+  },
   {
     field: "Product",
-    headerName: "Product",
-    // type: "number",
-    width: 90,
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <FormattedMessage id="YieldProdStats.Product"></FormattedMessage>
+    ),
+    width: 130,
   },
   {
     field: "Variety",
-    headerName: "Variety",
+    // headerName: "Variety",
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <FormattedMessage id="YieldProdStats.Variety"></FormattedMessage>
+    ),
     // type: "number",
     width: 90,
   },
   {
     field: "NetWeight",
-    headerName: "Net Weight",
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <FormattedMessage id="YieldProdStats.NetWeight"></FormattedMessage>
+    ),
+    // headerName: "Net Weight",
     // type: "number",
-    width: 90,
+    width: 120,
     valueGetter: (params: GridValueGetterParams) =>
       `${params.row.NetWeight || ""} ${params.row.NetWeightRef || ""}`,
   },
   {
     field: "NoofLeaves",
-    headerName: "Leaves Qty",
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <FormattedMessage id="YieldProdStats.NoofLeaves"></FormattedMessage>
+    ),
+    // headerName: "Leaves Qty",
     // type: "number",
-    width: 90,
+    width: 160,
   },
 ];
-
-
 
 const YieldProductStats: React.FC<YieldProductStatsProps> = (props) => {
   // export default function YieldProductStats() {
@@ -55,6 +87,9 @@ const YieldProductStats: React.FC<YieldProductStatsProps> = (props) => {
         rowsPerPageOptions={[5]}
         components={{ Toolbar: GridToolbar }}
         density="compact"
+        autoHeight={true}
+        disableSelectionOnClick={true}
+        // loading={true}
         // checkboxSelection
       />
     </div>

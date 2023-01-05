@@ -29,21 +29,27 @@ function App() {
   const handleMassUplModalClose = () => setMaassUplModalopen(false);
 
   useEffect(() => {
-    const axiosrequest1 = axios.get('https://us-central1-agriexp-db.cloudfunctions.net/app/YieldStat');
-    const axiosrequest2 = axios.get('https://us-central1-agriexp-db.cloudfunctions.net/app/UserData');
+    const axiosrequest1 = axios.get(
+      "https://us-central1-agriexp-db.cloudfunctions.net/app/YieldStat"
+    );
+    const axiosrequest2 = axios.get(
+      "https://us-central1-agriexp-db.cloudfunctions.net/app/UserData"
+    );
 
-    axios.all([axiosrequest1, axiosrequest2]).then(axios.spread(function (res1, res2) {
-      let ProductsData: YieldStat[] = res1.data;
-      setYieldStat(ProductsData);
-      console.log(res1);
-      console.log(res2);
-      let UserData = res2.data
-      if (UserData.lang == 'English') {
-        setMessages(English)
-      } else if (UserData.lang == 'Tamil') {
-        setMessages(Tamil)
-      }
-    }));
+    axios.all([axiosrequest1, axiosrequest2]).then(
+      axios.spread(function (res1, res2) {
+        let ProductsData: YieldStat[] = res1.data;
+        setYieldStat(ProductsData);
+        console.log(res1);
+        console.log(res2);
+        let UserData = res2.data;
+        if (UserData.lang == "English") {
+          setMessages(English);
+        } else if (UserData.lang == "Tamil") {
+          setMessages(Tamil);
+        }
+      })
+    );
 
     // axios
     //   .get("https://us-central1-agriexp-db.cloudfunctions.net/app/YieldStat")
@@ -67,20 +73,23 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <YieldProductStats ProductData={YieldStat}></YieldProductStats>
+                  <YieldProductStats
+                    ProductData={YieldStat}
+                  ></YieldProductStats>
                 }
               />
-              {/* <YieldProductStats ProductData={YieldStat}></YieldProductStats> */}
-              <Route path="/AddIntProduct" element={<AddProduct></AddProduct>} />
-              {/* <AddProduct></AddProduct> */}
+              <Route
+                path="/AddIntProduct"
+                element={<AddProduct></AddProduct>}
+              />
             </Routes>
           </Container>
+          <MassUploadModal
+            MaassUplModalopen={MaassUplModalopen}
+            handleMassUplModalClose={handleMassUplModalClose}
+            handleMassUplModalOpen={handleMassUplModalOpen}
+          ></MassUploadModal>
         </IntlProvider>
-        <MassUploadModal
-          MaassUplModalopen={MaassUplModalopen}
-          handleMassUplModalClose={handleMassUplModalClose}
-          handleMassUplModalOpen={handleMassUplModalOpen}
-        ></MassUploadModal>
       </div>
     </Router>
   );
