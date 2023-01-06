@@ -15,12 +15,14 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+import  firebaseconfig  from "./firebase";
 
 interface LoginProps {
   Username: string;
   setUsername: (userName: string) => void;
 }
 
+const app = firebaseconfig;
 const auth = getAuth();
 const theme = createTheme({
   palette: {
@@ -109,7 +111,7 @@ const Login: React.FC<LoginProps> = (props) => {
                       //   "Auth Token",
                       //   userCredential?._tokenResponse.refreshToken
                       // );
-                      navigate("/main");
+                      navigate("/");
                       console.log(userCredential);
                       // console.log(auth);
                       // auth.signOut();

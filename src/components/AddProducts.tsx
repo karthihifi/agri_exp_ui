@@ -14,9 +14,22 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 // import Typography from "@mui/material/Typography";
 import { FormattedMessage } from "react-intl";
+import Container from "react-bootstrap/Container";
+import ResponsiveAppBar from "../components/AppBar";
 
-function AddProduct() {
+interface AddProductProps {
+  handleMassUplModalOpen: () => void;
+  setMessages: (locale: any) => void;
+}
+
+const AddProduct: React.FC<AddProductProps> = (props) => {
   return (
+    <div>
+    <ResponsiveAppBar
+      handleMassUplModalOpen={props.handleMassUplModalOpen}
+      setMessages={props.setMessages}
+    ></ResponsiveAppBar>
+    <Container>
     <Box
       component="form"
       sx={{
@@ -161,6 +174,8 @@ function AddProduct() {
         </Button>
       </Stack>
     </Box>
+    </Container>
+    </div>
   );
 }
 

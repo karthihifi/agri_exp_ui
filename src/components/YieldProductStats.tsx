@@ -1,5 +1,7 @@
 import * as React from "react";
 import { YieldStat, RespData } from "./Interface";
+import Container from "react-bootstrap/Container";
+import ResponsiveAppBar from "../components/AppBar";
 import {
   DataGrid,
   GridColumnHeaderParams,
@@ -10,6 +12,8 @@ import {
 import { FormattedMessage } from "react-intl";
 
 interface YieldProductStatsProps {
+  handleMassUplModalOpen: () => void;
+  setMessages: (locale: any) => void;
   ProductData: YieldStat[];
 }
 const columns: GridColDef[] = [
@@ -79,19 +83,27 @@ const columns: GridColDef[] = [
 const YieldProductStats: React.FC<YieldProductStatsProps> = (props) => {
   // export default function YieldProductStats() {
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={props.ProductData}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        components={{ Toolbar: GridToolbar }}
-        density="compact"
-        autoHeight={true}
-        disableSelectionOnClick={true}
-        // loading={true}
-        // checkboxSelection
-      />
+    <div>
+      <ResponsiveAppBar
+        handleMassUplModalOpen={props.handleMassUplModalOpen}
+        setMessages={props.setMessages}
+      ></ResponsiveAppBar>
+      <Container>
+        <div style={{ height: 400, width: "100%" }}>
+          <DataGrid
+            rows={props.ProductData}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            components={{ Toolbar: GridToolbar }}
+            density="compact"
+            autoHeight={true}
+            disableSelectionOnClick={true}
+          // loading={true}
+          // checkboxSelection
+          />
+        </div>
+      </Container>
     </div>
   );
 };

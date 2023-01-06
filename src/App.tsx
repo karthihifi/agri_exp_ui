@@ -8,9 +8,11 @@ import YieldProductStats from "./components/YieldProductStats";
 import MassUploadModal from "./components/MassUploadInfoModal";
 import ResponsiveAppBar from "./components/AppBar";
 //import Container from '@mui/material/Container';
+import Login from "./components/LoginPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import { IntlProvider } from "react-intl";
+// import Main from "./components/Main"
 import Tamil from "./lang/ta.json";
 import English from "./lang/en.json";
 
@@ -23,6 +25,7 @@ function App() {
   const [messages, setMessages] = useState(English);
 
   const [YieldStat, setYieldStat] = useState<YieldStat[]>([]);
+  const [UserName, setUserName] = React.useState("");
 
   const [MaassUplModalopen, setMaassUplModalopen] = React.useState(false);
   const handleMassUplModalOpen = () => setMaassUplModalopen(true);
@@ -64,26 +67,33 @@ function App() {
     <Router>
       <div className="App">
         <IntlProvider locale={locale} messages={messages} key={locale}>
-          <ResponsiveAppBar
+          {/* <ResponsiveAppBar
             handleMassUplModalOpen={handleMassUplModalOpen}
             setMessages={setMessages}
-          ></ResponsiveAppBar>
-          <Container>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <YieldProductStats
-                    ProductData={YieldStat}
-                  ></YieldProductStats>
-                }
-              />
-              <Route
-                path="/AddIntProduct"
-                element={<AddProduct></AddProduct>}
-              />
-            </Routes>
-          </Container>
+          ></ResponsiveAppBar> */}
+          {/* <Container> */}
+          <Routes>
+            <Route path="/Login" element={
+              <Login Username={UserName} setUsername={setUserName}></Login>
+            }></Route>
+            {/* <Route path="/" element={<Main></Main>}></Route> */}
+            <Route
+              path="/"
+              element={
+                <YieldProductStats
+                  handleMassUplModalOpen={handleMassUplModalClose}
+                  setMessages={setMessages}
+                  ProductData={YieldStat}
+                ></YieldProductStats>
+              }
+            />
+            <Route
+              path="/AddIntProduct"
+              element={<AddProduct handleMassUplModalOpen={handleMassUplModalClose}
+                setMessages={setMessages}></AddProduct>}
+            />
+          </Routes>
+          {/* </Container> */}
           <MassUploadModal
             MaassUplModalopen={MaassUplModalopen}
             handleMassUplModalClose={handleMassUplModalClose}
