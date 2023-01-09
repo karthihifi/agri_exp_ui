@@ -15,7 +15,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import  firebaseconfig  from "./firebase";
+import firebaseconfig from "./firebase";
 
 interface LoginProps {
   Username: string;
@@ -60,7 +60,7 @@ const Login: React.FC<LoginProps> = (props) => {
       <div className="SignInpage-formcontent">
         <div className="SignInpage-box">
           <div className="SignInpage-header">
-            <h3>Login to BookMark Repository</h3>
+            <h3>Login to AgriImpex Dashboard</h3>
           </div>
           <div className="SignInpage-content">
             <Form>
@@ -106,11 +106,15 @@ const Login: React.FC<LoginProps> = (props) => {
                     .then((userCredential) => {
                       // Signed in
                       const user = userCredential.user;
+                      const tokenid = user.uid
+                      const Cred: any = userCredential;
+                      const token = Cred._tokenResponse.refreshToken
                       // ...
-                      // sessionStorage.setItem(
-                      //   "Auth Token",
-                      //   userCredential?._tokenResponse.refreshToken
-                      // );
+                      sessionStorage.setItem(
+                        "Auth Token",
+                        token
+                        // userCredential?._tokenResponse.refreshToken
+                      );
                       navigate("/");
                       console.log(userCredential);
                       // console.log(auth);
