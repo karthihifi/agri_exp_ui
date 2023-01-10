@@ -15,10 +15,12 @@ import { IntlProvider } from "react-intl";
 // import Main from "./components/Main"
 import Tamil from "./lang/ta.json";
 import English from "./lang/en.json";
+import AgriImpex from "./modal/Modal";
 
 import { Route, Routes, Link, BrowserRouter as Router } from "react-router-dom";
 
 // const locale = navigator.language;
+const AgriImpexref: AgriImpex = new AgriImpex();
 
 function App() {
   const [locale, setLocale] = useState("en");
@@ -26,6 +28,9 @@ function App() {
 
   const [YieldStat, setYieldStat] = useState<YieldStat[]>([]);
   const [UserName, setUserName] = React.useState("");
+  const [CurrSeason, setCurrSeason] = React.useState(
+    AgriImpexref.currentSeason
+  );
 
   const [MaassUplModalopen, setMaassUplModalopen] = React.useState(false);
   const handleMassUplModalOpen = () => setMaassUplModalopen(true);
@@ -73,9 +78,12 @@ function App() {
           ></ResponsiveAppBar> */}
           {/* <Container> */}
           <Routes>
-            <Route path="/Login" element={
-              <Login Username={UserName} setUsername={setUserName}></Login>
-            }></Route>
+            <Route
+              path="/Login"
+              element={
+                <Login Username={UserName} setUsername={setUserName}></Login>
+              }
+            ></Route>
             {/* <Route path="/" element={<Main></Main>}></Route> */}
             <Route
               path="/"
@@ -89,8 +97,13 @@ function App() {
             />
             <Route
               path="/AddIntProduct"
-              element={<AddProduct handleMassUplModalOpen={handleMassUplModalClose}
-                setMessages={setMessages}></AddProduct>}
+              element={
+                <AddProduct
+                  CurrSeason={CurrSeason}
+                  handleMassUplModalOpen={handleMassUplModalClose}
+                  setMessages={setMessages}
+                ></AddProduct>
+              }
             />
           </Routes>
           {/* </Container> */}

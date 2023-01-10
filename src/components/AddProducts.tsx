@@ -26,9 +26,8 @@ import {
 interface AddProductProps {
   handleMassUplModalOpen: () => void;
   setMessages: (locale: any) => void;
+  CurrSeason: string;
 }
-
-
 
 const AddProduct: React.FC<AddProductProps> = (props) => {
   const auth = getAuth();
@@ -40,7 +39,6 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
       return;
     }
   });
-
 
   return (
     <div>
@@ -66,8 +64,8 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
           <Stack
             spacing={2}
             direction="column"
-          // justifyContent="flex-start"
-          // alignItems="flex-start"
+            // justifyContent="flex-start"
+            // alignItems="flex-start"
           >
             <div className="AddProduct-form">
               <Stack
@@ -84,7 +82,23 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       variant="standard"
                       required
                       id="outlined-required"
-                      label={<FormattedMessage id="app.Area"></FormattedMessage>}
+                      disabled={true}
+                      label={
+                        <FormattedMessage id="YieldProdStats.Season"></FormattedMessage>
+                      }
+                      helperText={
+                        <FormattedMessage id="YieldProdStats.Season"></FormattedMessage>
+                      }
+                      value={props.CurrSeason}
+                    />
+                    <TextField
+                      size="small"
+                      variant="standard"
+                      required
+                      id="outlined-required"
+                      label={
+                        <FormattedMessage id="app.Area"></FormattedMessage>
+                      }
                       helperText={
                         <FormattedMessage id="app.EnterArea"></FormattedMessage>
                       }
@@ -93,7 +107,9 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       required
                       size="small"
                       id="outlined-required"
-                      label={<FormattedMessage id="app.Date"></FormattedMessage>}
+                      label={
+                        <FormattedMessage id="app.Date"></FormattedMessage>
+                      }
                       type="date"
                       helperText={
                         <FormattedMessage id="app.EnterDate"></FormattedMessage>
@@ -112,7 +128,9 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       required
                       size="small"
                       id="outlined-required"
-                      label={<FormattedMessage id="app.Product"></FormattedMessage>}
+                      label={
+                        <FormattedMessage id="app.Product"></FormattedMessage>
+                      }
                       type="text"
                       helperText={
                         <FormattedMessage id="app.EnterProduct"></FormattedMessage>
@@ -125,7 +143,9 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       required
                       size="small"
                       id="outlined-required"
-                      label={<FormattedMessage id="app.Variety"></FormattedMessage>}
+                      label={
+                        <FormattedMessage id="app.Variety"></FormattedMessage>
+                      }
                       type="text"
                       helperText={
                         <FormattedMessage id="app.EnterVariety"></FormattedMessage>
@@ -144,7 +164,9 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       required
                       size="small"
                       type="number"
-                      label={<FormattedMessage id="app.Weight"></FormattedMessage>}
+                      label={
+                        <FormattedMessage id="app.Weight"></FormattedMessage>
+                      }
                       id="standard-start-adornment"
                       sx={{ m: 1, width: "25ch" }}
                       InputProps={{
@@ -196,6 +218,6 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
       </Container>
     </div>
   );
-}
+};
 
 export default AddProduct;
