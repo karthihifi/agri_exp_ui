@@ -41,7 +41,7 @@ function App() {
       "https://us-central1-agriexp-db.cloudfunctions.net/app/YieldStat"
     );
     const axiosrequest2 = axios.get(
-      "https://us-central1-agriexp-db.cloudfunctions.net/app/UserData"
+      "https://us-central1-agriexp-db.cloudfunctions.net/app/UserData", { params: { user: 'karthi.hifi@gmail.com' } }
     );
 
     axios.all([axiosrequest1, axiosrequest2]).then(
@@ -99,6 +99,7 @@ function App() {
               path="/AddIntProduct"
               element={
                 <AddProduct
+                  AgriImpexRef={AgriImpexref}
                   CurrSeason={CurrSeason}
                   handleMassUplModalOpen={handleMassUplModalClose}
                   setMessages={setMessages}

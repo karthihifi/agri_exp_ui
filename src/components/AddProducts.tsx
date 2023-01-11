@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import Box from "@mui/material/Box";
+import { AddProductModal } from "./Interface";
 import { TextField, Typography } from "@mui/material";
 import Input from "@mui/material/Input";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -22,14 +23,26 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+import AgriImpex from "../modal/Modal";
+
 
 interface AddProductProps {
   handleMassUplModalOpen: () => void;
   setMessages: (locale: any) => void;
   CurrSeason: string;
+  AgriImpexRef: AgriImpex
 }
 
 const AddProduct: React.FC<AddProductProps> = (props) => {
+
+  const [Product, setProduct] = useState<AddProductModal>(props.AgriImpexRef.defaultProductData);
+
+  const handleChange =
+    (prop: keyof AddProductModal) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      let dummydata: AddProductModal = { ...Product, [prop]: event.target.value }
+      setProduct(dummydata);
+    };
+
   const auth = getAuth();
   const navigate = useNavigate();
   useEffect(() => {
@@ -64,8 +77,8 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
           <Stack
             spacing={2}
             direction="column"
-            // justifyContent="flex-start"
-            // alignItems="flex-start"
+          // justifyContent="flex-start"
+          // alignItems="flex-start"
           >
             <div className="AddProduct-form">
               <Stack
@@ -83,6 +96,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       required
                       id="outlined-required"
                       disabled={true}
+                      onChange={handleChange("Area")}
                       label={
                         <FormattedMessage id="YieldProdStats.Season"></FormattedMessage>
                       }
@@ -128,6 +142,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       required
                       size="small"
                       id="outlined-required"
+                      onChange={handleChange("Product")}
                       label={
                         <FormattedMessage id="app.Product"></FormattedMessage>
                       }
@@ -143,6 +158,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       required
                       size="small"
                       id="outlined-required"
+                      onChange={handleChange("Variety")}
                       label={
                         <FormattedMessage id="app.Variety"></FormattedMessage>
                       }
@@ -164,6 +180,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       required
                       size="small"
                       type="number"
+                      onChange={handleChange("NetWeight")}
                       label={
                         <FormattedMessage id="app.Weight"></FormattedMessage>
                       }
@@ -185,6 +202,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       size="small"
                       variant="standard"
                       id="outlined-required"
+                      onChange={handleChange("NoofLeaves")}
                       label={
                         <FormattedMessage id="app.Leavesno"></FormattedMessage>
                       }
@@ -197,6 +215,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       variant="standard"
                       size="small"
                       id="outlined-required"
+                      onChange={handleChange("StemWeight")}
                       label={
                         <FormattedMessage id="app.StemWeight"></FormattedMessage>
                       }
@@ -210,7 +229,8 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
               </Stack>
             </div>
 
-            <Button sx={{ width: "25%" }} variant="contained">
+            <Button sx={{ width: "25%" }} variant="contained"
+              onClick={() => props.AgriImpexRef.AddNewProduct(Product)}>
               <FormattedMessage id="btn.AddProduct"></FormattedMessage>
             </Button>
           </Stack>
