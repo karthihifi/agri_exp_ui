@@ -39,9 +39,11 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
 
   const [Product, setProduct] = useState<AddProductModal>(props.AgriImpexRef.defaultProductData);
   const [openMsgBar, setopenMsgBar] = React.useState(false);
+  const [Message, setMessage] = React.useState("");
 
   const handleopenMsgBar = () => {
     setopenMsgBar(true);
+    console.log(openMsgBar, "openMsgBar")
   };
 
   const handleCloseMsgBar = (event: React.SyntheticEvent | Event, reason?: string) => {
@@ -126,6 +128,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       required
                       id="outlined-required"
                       onChange={handleChange("Area")}
+                      value={Product.Area}
                       label={
                         <FormattedMessage id="app.Area"></FormattedMessage>
                       }
@@ -158,7 +161,6 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       required
                       size="small"
                       id="outlined-required"
-                      onChange={handleChange("Product")}
                       label={
                         <FormattedMessage id="app.Product"></FormattedMessage>
                       }
@@ -167,7 +169,9 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                         <FormattedMessage id="app.EnterProduct"></FormattedMessage>
                       }
                       variant="standard"
-                      defaultValue="Banana"
+                      // defaultValue="Banana"
+                      value={Product.Product}
+                      onChange={handleChange("Product")}
                     />
 
                     <TextField
@@ -183,7 +187,8 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                         <FormattedMessage id="app.EnterVariety"></FormattedMessage>
                       }
                       variant="standard"
-                      defaultValue="Cavendish"
+                      // defaultValue="Cavendish"
+                      value={Product.Variety}
                     />
                   </Box>
                 </Stack>
@@ -197,6 +202,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       size="small"
                       type="number"
                       onChange={handleChange("NetWeight")}
+                      value={Product.NetWeight}
                       label={
                         <FormattedMessage id="app.Weight"></FormattedMessage>
                       }
@@ -219,6 +225,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       variant="standard"
                       id="outlined-required"
                       onChange={handleChange("NoofLeaves")}
+                      value={Product.NoofLeaves}
                       label={
                         <FormattedMessage id="app.Leavesno"></FormattedMessage>
                       }
@@ -234,6 +241,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       variant="standard"
                       id="outlined-required"
                       onChange={handleChange("Length")}
+                      value={Product.Length}
                       InputProps={{
                         endAdornment: (
                           <InputAdornment position="start">cm</InputAdornment>
@@ -252,6 +260,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       variant="standard"
                       size="small"
                       id="outlined-required"
+                      value={Product.StemWeight}
                       onChange={handleChange("StemWeight")}
                       InputProps={{
                         endAdornment: (
@@ -272,13 +281,25 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
             </div>
 
             <Button sx={{ width: "25%" }} variant="contained"
-              onClick={() => props.AgriImpexRef.AddNewProduct(Product)}>
+              onClick={() => {
+                props.AgriImpexRef.AddNewProduct(Product).then((resp) => {
+                  handleopenMsgBar()
+                  setMessage(resp.data)
+                  setProduct(props.AgriImpexRef.defaultProductData)
+                  // console.log(resp.data, "Add Product side", openMsgBar)
+                })
+              }
+              }>
               <FormattedMessage id="btn.AddProduct"></FormattedMessage>
             </Button>
           </Stack>
         </Box>
       </Container>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
+      <MessageBar handleCloseMsgBar={handleCloseMsgBar}
+        Message={Message}
+        handleopenMsgBar={handleopenMsgBar}
+        openMsgBar={openMsgBar}></MessageBar>
     </div>
   );
 };

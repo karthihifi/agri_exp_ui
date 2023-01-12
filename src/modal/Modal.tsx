@@ -25,14 +25,21 @@ class AgriImpex {
 
   }
 
-  AddNewProduct(Product: AddProductModal) {
+  AddNewProduct(Product: AddProductModal): Promise<any> {
     // http://localhost:5001/agriexp-db/us-central1/app/YieldStat
     // https://us-central1-agriexp-db.cloudfunctions.net/app/Product
-    axios.post('https://us-central1-agriexp-db.cloudfunctions.net/app/Product', Product)
-      .then(response => console.log(response))
-      .catch(error => {
-        console.error('There was an error!', error);
-      });
+    return axios.post('https://us-central1-agriexp-db.cloudfunctions.net/app/Product', Product)
+    // var resp: String
+    //  axios.post('https://us-central1-agriexp-db.cloudfunctions.net/app/Product', Product)
+    //   .then((response) => {
+    //     // console.log(response)
+    //     resp = String(response)
+    //     return resp
+    //   }).catch(error => {
+    //     console.error('There was an error!', error);
+    //     resp = "Error Occured"
+    //     return resp
+    //   });
   }
 
   SigintoApp(auth: any, email: string, password: string) {

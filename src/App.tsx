@@ -89,7 +89,7 @@ function App() {
               path="/"
               element={
                 <YieldProductStats
-                  handleMassUplModalOpen={handleMassUplModalClose}
+                  handleMassUplModalOpen={handleMassUplModalOpen}
                   setMessages={setMessages}
                   ProductData={YieldStat}
                 ></YieldProductStats>
@@ -101,7 +101,7 @@ function App() {
                 <AddProduct
                   AgriImpexRef={AgriImpexref}
                   CurrSeason={CurrSeason}
-                  handleMassUplModalOpen={handleMassUplModalClose}
+                  handleMassUplModalOpen={handleMassUplModalOpen}
                   setMessages={setMessages}
                 ></AddProduct>
               }

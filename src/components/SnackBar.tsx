@@ -3,13 +3,22 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 
 interface MessageBarProps {
     openMsgBar: any;
+    Message: String;
     handleopenMsgBar: () => void;
-    handleCloseMsgBar: () => void;
+    handleCloseMsgBar: (event: React.SyntheticEvent | Event, reason?: string) => void;
 }
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref,
+) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const MessageBar: React.FC<MessageBarProps> = (props) => {
 
@@ -36,9 +45,14 @@ const MessageBar: React.FC<MessageBarProps> = (props) => {
                 open={props.openMsgBar}
                 autoHideDuration={6000}
                 onClose={props.handleCloseMsgBar}
-                message="Note archived"
-                action={action}
-            />
+            // message={props.Message}
+            // action={action}
+            >
+                <Alert onClose={props.handleCloseMsgBar} severity="success" sx={{ width: '100%' }}>
+                    {/* This is a success message! */}
+                    {props.Message}
+                </Alert>
+            </Snackbar>
         </div>
     );
 }
