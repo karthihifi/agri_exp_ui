@@ -12,18 +12,22 @@ class AgriImpex {
     this.currentSeason = prevYear + "-" + currentYear;
     this.defaultProductData = {
       Area: "",
-      Product: "",
-      Variety: "",
+      Product: "Banana",
+      Variety: "Cavendish",
       NetWeight: 0,
       NetWeightRef: "Kg",
       Season: prevYear + "-" + currentYear,
       NoofLeaves: 0,
-      StemWeight: 0
+      Length: 0,
+      StemWeight: 0,
+      Createdby: "karthi.hifi@gmail.com"
     };
 
   }
 
   AddNewProduct(Product: AddProductModal) {
+    // http://localhost:5001/agriexp-db/us-central1/app/YieldStat
+    // https://us-central1-agriexp-db.cloudfunctions.net/app/Product
     axios.post('https://us-central1-agriexp-db.cloudfunctions.net/app/Product', Product)
       .then(response => console.log(response))
       .catch(error => {

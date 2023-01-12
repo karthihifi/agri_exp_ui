@@ -10,6 +10,7 @@ import {
   GridToolbar,
 } from "@mui/x-data-grid";
 import { FormattedMessage } from "react-intl";
+import Footer from "./footer";
 
 interface YieldProductStatsProps {
   handleMassUplModalOpen: () => void;
@@ -104,6 +105,7 @@ const YieldProductStats: React.FC<YieldProductStatsProps> = (props) => {
           />
         </div>
       </Container>
+      <Footer></Footer>
     </div>
   );
 };

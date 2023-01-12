@@ -18,6 +18,7 @@
   "app.Weight": "Weight",
   "app.EnterWeight": "Enter Weight",
   "app.Leavesno": "No of Leaves",
+  "app.Leaflength":"Leaves Length",
   "app.EnterLeavesno": "Enter Leaves Qty",
   "app.StemWeight": "Stem Weight",
   "app.EnterStemWght": "Enter Stem Weight(approx)",

@@ -18,12 +18,14 @@ import { FormattedMessage } from "react-intl";
 import Container from "react-bootstrap/Container";
 import ResponsiveAppBar from "../components/AppBar";
 import { useLocation, useNavigate } from "react-router-dom";
+import MessageBar from "./SnackBar"
 import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import AgriImpex from "../modal/Modal";
+import Footer from "./footer";
 
 
 interface AddProductProps {
@@ -36,11 +38,25 @@ interface AddProductProps {
 const AddProduct: React.FC<AddProductProps> = (props) => {
 
   const [Product, setProduct] = useState<AddProductModal>(props.AgriImpexRef.defaultProductData);
+  const [openMsgBar, setopenMsgBar] = React.useState(false);
+
+  const handleopenMsgBar = () => {
+    setopenMsgBar(true);
+  };
+
+  const handleCloseMsgBar = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setopenMsgBar(false);
+  };
 
   const handleChange =
     (prop: keyof AddProductModal) => (event: React.ChangeEvent<HTMLInputElement>) => {
       let dummydata: AddProductModal = { ...Product, [prop]: event.target.value }
       setProduct(dummydata);
+      console.log(dummydata)
     };
 
   const auth = getAuth();
@@ -96,7 +112,6 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       required
                       id="outlined-required"
                       disabled={true}
-                      onChange={handleChange("Area")}
                       label={
                         <FormattedMessage id="YieldProdStats.Season"></FormattedMessage>
                       }
@@ -110,6 +125,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                       variant="standard"
                       required
                       id="outlined-required"
+                      onChange={handleChange("Area")}
                       label={
                         <FormattedMessage id="app.Area"></FormattedMessage>
                       }
@@ -211,11 +227,37 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
                         <FormattedMessage id="app.EnterLeavesno"></FormattedMessage>
                       }
                     />
+
+                    <TextField
+                      required
+                      size="small"
+                      variant="standard"
+                      id="outlined-required"
+                      onChange={handleChange("Length")}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="start">cm</InputAdornment>
+                        ),
+                      }}
+                      label={
+                        <FormattedMessage id="app.Leaflength"></FormattedMessage>
+                      }
+                      type="number"
+                      helperText={
+                        <FormattedMessage id="app.Leaflength"></FormattedMessage>
+                      }
+                    />
+
                     <TextField
                       variant="standard"
                       size="small"
                       id="outlined-required"
                       onChange={handleChange("StemWeight")}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="start">Kg</InputAdornment>
+                        ),
+                      }}
                       label={
                         <FormattedMessage id="app.StemWeight"></FormattedMessage>
                       }
@@ -236,6 +278,7 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
           </Stack>
         </Box>
       </Container>
+      <Footer></Footer>
     </div>
   );
 };

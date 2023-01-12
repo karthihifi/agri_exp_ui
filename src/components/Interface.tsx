@@ -33,6 +33,8 @@ export interface AddProductModal {
   Variety: String;
   NetWeight: Number;
   NetWeightRef: String;
-  NoofLeaves:Number;
-  StemWeight:Number
+  Length:Number;
+  NoofLeaves: Number;
+  Createdby: String;
+  StemWeight: Number
 }
