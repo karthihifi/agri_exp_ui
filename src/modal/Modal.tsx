@@ -1,11 +1,16 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { AddProductModal, YieldStat } from "../components/Interface";
+import {
+  AddProductModal,
+  YieldStat,
+  AddAreaDetails,
+} from "../components/Interface";
 import axios from "axios";
 
 class AgriImpex {
   useridtoken: any;
   currentSeason: string;
   defaultProductData: AddProductModal;
+  defaultAreaDetails: AddAreaDetails;
   constructor() {
     let currentYear = new Date().getFullYear();
     let prevYear = new Date().getFullYear() - 1;
@@ -20,15 +25,31 @@ class AgriImpex {
       NoofLeaves: 0,
       Length: 0,
       StemWeight: 0,
-      Createdby: "karthi.hifi@gmail.com"
+      Createdby: "karthi.hifi@gmail.com",
     };
-
+    this.defaultAreaDetails = {
+      AreaID: "",
+      Zone: "",
+      AreaName: "",
+      TotalHectare: 0,
+      TotalHectareRef: "Acre",
+      PlantationCapacity: 0,
+      Owner: "",
+      Village: "",
+      TownPanchayat: "",
+      District: "",
+      Pincode: 0,
+      Address: "",
+    };
   }
 
   AddNewProduct(Product: AddProductModal): Promise<any> {
     // http://localhost:5001/agriexp-db/us-central1/app/YieldStat
     // https://us-central1-agriexp-db.cloudfunctions.net/app/Product
-    return axios.post('https://us-central1-agriexp-db.cloudfunctions.net/app/Product', Product)
+    return axios.post(
+      "https://us-central1-agriexp-db.cloudfunctions.net/app/Product",
+      Product
+    );
     // var resp: String
     //  axios.post('https://us-central1-agriexp-db.cloudfunctions.net/app/Product', Product)
     //   .then((response) => {

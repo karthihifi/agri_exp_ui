@@ -4,6 +4,7 @@ import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
 import AddProduct from "./components/AddProducts";
+import AddArea from "./components/Area/AddArea";
 import YieldProductStats from "./components/YieldProductStats";
 import MassUploadModal from "./components/MassUploadInfoModal";
 import ResponsiveAppBar from "./components/AppBar";
@@ -41,7 +42,8 @@ function App() {
       "https://us-central1-agriexp-db.cloudfunctions.net/app/YieldStat"
     );
     const axiosrequest2 = axios.get(
-      "https://us-central1-agriexp-db.cloudfunctions.net/app/UserData", { params: { user: 'karthi.hifi@gmail.com' } }
+      "https://us-central1-agriexp-db.cloudfunctions.net/app/UserData",
+      { params: { user: "karthi.hifi@gmail.com" } }
     );
 
     axios.all([axiosrequest1, axiosrequest2]).then(
@@ -104,6 +106,18 @@ function App() {
                   handleMassUplModalOpen={handleMassUplModalOpen}
                   setMessages={setMessages}
                 ></AddProduct>
+              }
+            />
+
+            <Route
+              path="/AddArea"
+              element={
+                <AddArea
+                  AgriImpexRef={AgriImpexref}
+                  CurrSeason={CurrSeason}
+                  handleMassUplModalOpen={handleMassUplModalOpen}
+                  setMessages={setMessages}
+                ></AddArea>
               }
             />
           </Routes>

@@ -18,7 +18,7 @@ import { FormattedMessage } from "react-intl";
 import Container from "react-bootstrap/Container";
 import ResponsiveAppBar from "../components/AppBar";
 import { useLocation, useNavigate } from "react-router-dom";
-import MessageBar from "./SnackBar"
+import MessageBar from "./SnackBar";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -27,27 +27,37 @@ import {
 import AgriImpex from "../modal/Modal";
 import Footer from "./footer";
 
+import { ProgressBar } from "react-loader-spinner";
 
 interface AddProductProps {
   handleMassUplModalOpen: () => void;
   setMessages: (locale: any) => void;
   CurrSeason: string;
-  AgriImpexRef: AgriImpex
+  AgriImpexRef: AgriImpex;
 }
 
 const AddProduct: React.FC<AddProductProps> = (props) => {
-
-  const [Product, setProduct] = useState<AddProductModal>(props.AgriImpexRef.defaultProductData);
+  const [Product, setProduct] = useState<AddProductModal>(
+    props.AgriImpexRef.defaultProductData
+  );
   const [openMsgBar, setopenMsgBar] = React.useState(false);
   const [Message, setMessage] = React.useState("");
+  const [OpenProgressBar, setProgressBar] = React.useState(false);
+
+  const handleProgressBar = () => {
+    setProgressBar(!OpenProgressBar);
+  };
 
   const handleopenMsgBar = () => {
     setopenMsgBar(true);
-    console.log(openMsgBar, "openMsgBar")
+    console.log(openMsgBar, "openMsgBar");
   };
 
-  const handleCloseMsgBar = (event: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
+  const handleCloseMsgBar = (
+    event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
       return;
     }
 
@@ -55,10 +65,14 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
   };
 
   const handleChange =
-    (prop: keyof AddProductModal) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      let dummydata: AddProductModal = { ...Product, [prop]: event.target.value }
+    (prop: keyof AddProductModal) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      let dummydata: AddProductModal = {
+        ...Product,
+        [prop]: event.target.value,
+      };
       setProduct(dummydata);
-      console.log(dummydata)
+      console.log(dummydata);
     };
 
   const auth = getAuth();
@@ -95,8 +109,8 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
           <Stack
             spacing={2}
             direction="column"
-          // justifyContent="flex-start"
-          // alignItems="flex-start"
+            // justifyContent="flex-start"
+            // alignItems="flex-start"
           >
             <div className="AddProduct-form">
               <Stack
@@ -280,26 +294,42 @@ const AddProduct: React.FC<AddProductProps> = (props) => {
               </Stack>
             </div>
 
-            <Button sx={{ width: "25%" }} variant="contained"
+            <Button
+              sx={{ width: "25%" }}
+              variant="contained"
               onClick={() => {
+                handleProgressBar();
                 props.AgriImpexRef.AddNewProduct(Product).then((resp) => {
-                  handleopenMsgBar()
-                  setMessage(resp.data)
-                  setProduct(props.AgriImpexRef.defaultProductData)
+                  handleopenMsgBar();
+                  setMessage(resp.data);
+                  setProduct(props.AgriImpexRef.defaultProductData);
+                  handleProgressBar();
                   // console.log(resp.data, "Add Product side", openMsgBar)
-                })
-              }
-              }>
+                });
+              }}
+            >
               <FormattedMessage id="btn.AddProduct"></FormattedMessage>
             </Button>
           </Stack>
         </Box>
       </Container>
       {/* <Footer></Footer> */}
-      <MessageBar handleCloseMsgBar={handleCloseMsgBar}
+      <MessageBar
+        handleCloseMsgBar={handleCloseMsgBar}
         Message={Message}
         handleopenMsgBar={handleopenMsgBar}
-        openMsgBar={openMsgBar}></MessageBar>
+        openMsgBar={openMsgBar}
+      ></MessageBar>
+      <ProgressBar
+        height="80"
+        width="80"
+        ariaLabel="progress-bar-loading"
+        wrapperStyle={{}}
+        visible={OpenProgressBar}
+        wrapperClass="progress-bar-wrapper"
+        borderColor="#F4442E"
+        barColor="#51E5FF"
+      />
     </div>
   );
 };

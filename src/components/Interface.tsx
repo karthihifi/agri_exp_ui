@@ -33,8 +33,23 @@ export interface AddProductModal {
   Variety: String;
   NetWeight: Number;
   NetWeightRef: String;
-  Length:Number;
+  Length: Number;
   NoofLeaves: Number;
   Createdby: String;
-  StemWeight: Number
+  StemWeight: Number;
+}
+
+export interface AddAreaDetails {
+  AreaID: String;
+  Zone: String;
+  AreaName: String;
+  TotalHectare: Number;
+  TotalHectareRef: String;
+  PlantationCapacity: Number;
+  Owner: String;
+  Village: String;
+  TownPanchayat: String;
+  District: String;
+  Pincode: Number;
+  Address: String;
 }

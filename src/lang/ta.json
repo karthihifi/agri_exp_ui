@@ -38,5 +38,25 @@
   "YieldProdStats.NoofLeaves": "சீப்பு எண்ணிக்கை",
 
   "MassUpl.Header": "பெருந்திரள் பதிவேற்றம்",
-  "MassUpl.body": "கீழே குறிப்பிடப்பட்ட எக்செல் வடிவத்தில் தரவைப் பதிவேற்றவும்.வடிவத்தைப் பதிவிறக்க <Link>இங்கே</Link> கிளிக் செய்யவும்"
+  "MassUpl.body": "கீழே குறிப்பிடப்பட்ட எக்செல் வடிவத்தில் தரவைப் பதிவேற்றவும்.வடிவத்தைப் பதிவிறக்க <Link>இங்கே</Link> கிளிக் செய்யவும்",
+
+  "Area.Header": "பகுதி விவரங்கள்",
+  "Area.AddArea": "பகுதி விவரங்களைச் சேர்க்கவும்",
+  "Area.AreaOverview": "பகுதி மேலோட்டம்",
+  "Area.ZoneHeader": "மண்டல விவரங்கள்",
+  "Area.CapacityHeader": "கொள் திறன் விவரங்கள்",
+  "Area.ContactHeader": "தொடர்பு விவரங்கள்",
+  "Area.AddressHeader": "முகவரி விவரங்கள்",
+
+  "Area.ID": "பகுதி அடையாளம்",
+  "Area.Zone": "மண்டலம்",
+  "Area.AreaName": "பகுதி பெயர்",
+  "Area.TotalHect": "மொத்த பரப்பளவு(ஏக்கரில்)",
+  "Area.PlantationCapacity": "தோட்டத் கொள் திறன்",
+  "Area.Owner": "உரிமையாளர்",
+  "Area.Village": "கிராமம்",
+  "Area.TownPanchayat": "டவுன் பஞ்சாயத்து",
+  "Area.District": "மாவட்டம்",
+  "Area.Pincode": "அஞ்சல் குறியீடு",
+  "Area.Address": "முகவரி"
 }

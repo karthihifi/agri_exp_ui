@@ -169,7 +169,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { DropdownSubmenu, NavDropdownMenu } from "react-bootstrap-submenu";
 import { FormattedMessage } from "react-intl";
 import "react-bootstrap-submenu/dist/index.css";
-import AgricultureIcon from '@mui/icons-material/Agriculture';
+import AgricultureIcon from "@mui/icons-material/Agriculture";
 import { Route, Routes, Link, BrowserRouter as Router } from "react-router-dom";
 
 import Tamil from "../lang/ta.json";
@@ -182,21 +182,44 @@ interface Appbarprops {
 
 const ResponsiveAppBar: React.FC<Appbarprops> = (props) => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
       <Container>
         <Navbar.Brand href="/">
           {/* React-Bootstrap */}
-          <AgricultureIcon sx={{ fontSize: 40 }}></AgricultureIcon>
-          </Navbar.Brand>
+          <AgricultureIcon sx={{ fontSize: 30 }}></AgricultureIcon>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">
               <FormattedMessage id="app.YieldStats"></FormattedMessage>
             </Nav.Link>
-            <Nav.Link href="#link">
+            {/* <Nav.Link href="#link">
               <FormattedMessage id="app.Procurement"></FormattedMessage>
-            </Nav.Link>
+            </Nav.Link> */}
+
+            <NavDropdown
+              title={<FormattedMessage id="Area.Header"></FormattedMessage>}
+              id="basic-nav-dropdown"
+            >
+              <NavDropdown.Item href="#action/3.2">
+                <FormattedMessage id="Area.AreaOverview"></FormattedMessage>
+              </NavDropdown.Item>
+              <NavDropdown.Item
+              // href="/AddIntProduct"
+              >
+                <Link to="/AddArea" style={{ textDecoration: "none" }}>
+                  <FormattedMessage id="Area.AddArea"></FormattedMessage>
+                </Link>
+                {/* <FormattedMessage id="app.InternalYieldDataAdd"></FormattedMessage> */}
+              </NavDropdown.Item>
+
+              {/* <NavDropdown.Divider /> */}
+              {/* <NavDropdown.Item onClick={props.handleMassUplModalOpen}>
+                <FormattedMessage id="app.MassDataUpload"></FormattedMessage>
+              </NavDropdown.Item> */}
+            </NavDropdown>
+
             <NavDropdown
               title={
                 <FormattedMessage id="app.YieldDataPrep"></FormattedMessage>
@@ -206,7 +229,7 @@ const ResponsiveAppBar: React.FC<Appbarprops> = (props) => {
               <NavDropdown.Item
               // href="/AddIntProduct"
               >
-                <Link to="/AddIntProduct" style={{ textDecoration: 'none' }}>
+                <Link to="/AddIntProduct" style={{ textDecoration: "none" }}>
                   <FormattedMessage id="app.InternalYieldDataAdd"></FormattedMessage>
                 </Link>
                 {/* <FormattedMessage id="app.InternalYieldDataAdd"></FormattedMessage> */}
