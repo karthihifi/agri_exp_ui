@@ -58,7 +58,16 @@ const AddArea: React.FC<AddAreaProps> = (props) => {
   const handleChange =
     (prop: keyof AddAreaDetails) =>
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      let dummydata: AddAreaDetails = { ...Area, [prop]: event.target.value };
+      let dummydata: AddAreaDetails;
+      dummydata = { ...Area, [prop]: event.target.value };
+      console.log(dummydata);
+      //   if (prop == "Crop") {
+      //     dummydata.Plantation[0].Crop = event.target.value;
+      //   } else if (prop == "PlantationCapacity") {
+      //     dummydata.Plantation[0].PlantationCapacity = parseInt(
+      //       event.target.value
+      //     );
+      //   }
       setArea(dummydata);
       console.log(dummydata);
     };
@@ -184,10 +193,34 @@ const AddArea: React.FC<AddAreaProps> = (props) => {
                       helperText={
                         <FormattedMessage id="Area.TotalHect"></FormattedMessage>
                       }
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="start">
+                            Acres
+                          </InputAdornment>
+                        ),
+                      }}
                       variant="standard"
                       // defaultValue="Banana"
                       value={Area.TotalHectare}
                       onChange={handleChange("TotalHectare")}
+                    />
+
+                    <TextField
+                      required
+                      size="small"
+                      id="outlined-required"
+                      onChange={handleChange("Crop")}
+                      label={
+                        <FormattedMessage id="Area.Crop"></FormattedMessage>
+                      }
+                      type="text"
+                      helperText={
+                        <FormattedMessage id="Area.Crop"></FormattedMessage>
+                      }
+                      variant="standard"
+                      // defaultValue="Cavendish"
+                      value={Area.Crop}
                     />
 
                     <TextField
@@ -206,6 +239,44 @@ const AddArea: React.FC<AddAreaProps> = (props) => {
                       // defaultValue="Cavendish"
                       value={Area.PlantationCapacity}
                     />
+
+                    <Button
+                      variant="text"
+                      onClick={(event) => {
+                        const CheckAreaExists = () =>
+                          Area.Plantation.find((item) => {
+                            return item.Crop == Area.Crop;
+                          });
+                        console.log(Area.Crop, CheckAreaExists(), Area);
+                        if (
+                          Area.Crop !== " " &&
+                          CheckAreaExists() === undefined
+                        ) {
+                          Area.Plantation.push({
+                            Crop: Area.Crop,
+                            PlantationCapacity: Area.PlantationCapacity,
+                          });
+
+                          let dummydata: AddAreaDetails;
+                          dummydata = { ...Area };
+                          setArea(dummydata);
+                        }
+                      }}
+                    >
+                      Add Plantation
+                    </Button>
+                    <Box>
+                      {Area.Plantation.map((item) => {
+                        return (
+                          <Box>
+                            <Typography>{item.Crop}</Typography>
+                            <Typography>
+                              {String(item.PlantationCapacity)}
+                            </Typography>
+                          </Box>
+                        );
+                      })}
+                    </Box>
                   </Box>
                 </Stack>
                 <Stack justifyContent="flex-start" alignItems="flex-start">
@@ -240,14 +311,30 @@ const AddArea: React.FC<AddAreaProps> = (props) => {
                       size="small"
                       variant="standard"
                       id="outlined-required"
-                      onChange={handleChange("Owner")}
-                      value={Area.Owner}
+                      onChange={handleChange("Contactno")}
+                      value={Area.Contactno}
                       label={
-                        <FormattedMessage id="Area.Owner"></FormattedMessage>
+                        <FormattedMessage id="Area.Contactno"></FormattedMessage>
+                      }
+                      type="number"
+                      helperText={
+                        <FormattedMessage id="Area.Contactno"></FormattedMessage>
+                      }
+                    />
+
+                    <TextField
+                      required
+                      size="small"
+                      variant="standard"
+                      id="outlined-required"
+                      onChange={handleChange("Email")}
+                      value={Area.Email}
+                      label={
+                        <FormattedMessage id="Area.Email"></FormattedMessage>
                       }
                       // type="number"
                       helperText={
-                        <FormattedMessage id="Area.Owner"></FormattedMessage>
+                        <FormattedMessage id="Area.Email"></FormattedMessage>
                       }
                     />
 

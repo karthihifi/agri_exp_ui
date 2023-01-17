@@ -1,5 +1,10 @@
 type GUID = string & { isGuid: true };
 
+type Plantation = {
+  Crop: String;
+  PlantationCapacity: Number;
+};
+
 export interface RespData {
   id: GUID;
   Season: String;
@@ -45,8 +50,12 @@ export interface AddAreaDetails {
   AreaName: String;
   TotalHectare: Number;
   TotalHectareRef: String;
+  Plantation: Plantation[];
+  Crop: String;
   PlantationCapacity: Number;
   Owner: String;
+  Contactno: Number;
+  Email: String;
   Village: String;
   TownPanchayat: String;
   District: String;
