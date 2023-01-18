@@ -57,20 +57,20 @@ const AddArea: React.FC<AddAreaProps> = (props) => {
 
   const handleChange =
     (prop: keyof AddAreaDetails) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      let dummydata: AddAreaDetails;
-      dummydata = { ...Area, [prop]: event.target.value };
-      console.log(dummydata);
-      //   if (prop == "Crop") {
-      //     dummydata.Plantation[0].Crop = event.target.value;
-      //   } else if (prop == "PlantationCapacity") {
-      //     dummydata.Plantation[0].PlantationCapacity = parseInt(
-      //       event.target.value
-      //     );
-      //   }
-      setArea(dummydata);
-      console.log(dummydata);
-    };
+      (event: React.ChangeEvent<HTMLInputElement>) => {
+        let dummydata: AddAreaDetails;
+        dummydata = { ...Area, [prop]: event.target.value };
+        console.log(dummydata);
+        //   if (prop == "Crop") {
+        //     dummydata.Plantation[0].Crop = event.target.value;
+        //   } else if (prop == "PlantationCapacity") {
+        //     dummydata.Plantation[0].PlantationCapacity = parseInt(
+        //       event.target.value
+        //     );
+        //   }
+        setArea(dummydata);
+        console.log(dummydata);
+      };
 
   // useEffect(() => {
   //     const axiosrequest1 = axios.get(
@@ -120,8 +120,8 @@ const AddArea: React.FC<AddAreaProps> = (props) => {
           <Stack
             spacing={2}
             direction="column"
-            // justifyContent="flex-start"
-            // alignItems="flex-start"
+          // justifyContent="flex-start"
+          // alignItems="flex-start"
           >
             <div className="AddProduct-form">
               <Stack
@@ -173,7 +173,7 @@ const AddArea: React.FC<AddAreaProps> = (props) => {
                       variant="standard"
                       value={Area.AreaName}
                       onChange={handleChange("AreaName")}
-                      //defaultValue={dayjs().format("YYYY-MM-DD")}
+                    //defaultValue={dayjs().format("YYYY-MM-DD")}
                     />
                   </Box>
                 </Stack>
@@ -287,7 +287,6 @@ const AddArea: React.FC<AddAreaProps> = (props) => {
                     <TextField
                       required
                       size="small"
-                      type="number"
                       onChange={handleChange("Owner")}
                       value={Area.Owner}
                       label={
@@ -478,12 +477,12 @@ const AddArea: React.FC<AddAreaProps> = (props) => {
               sx={{ width: "25%" }}
               variant="contained"
               onClick={() => {
-                // props.AgriImpexRef.AddNewProduct(Area).then((resp) => {
-                //   handleopenMsgBar()
-                //   setMessage(resp.data)
-                //   setArea(props.AgriImpexRef.defaultAreaDetails)
-                //   // console.log(resp.data, "Add Product side", openMsgBar)
-                // })
+                props.AgriImpexRef.AddNewArea(Area).then((resp) => {
+                  handleopenMsgBar()
+                  setMessage(resp.data)
+                  setArea(props.AgriImpexRef.defaultAreaDetails)
+                  // console.log(resp.data, "Add Product side", openMsgBar)
+                })
               }}
             >
               <FormattedMessage id="btn.AddProduct"></FormattedMessage>

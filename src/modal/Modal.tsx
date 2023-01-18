@@ -3,6 +3,7 @@ import {
   AddProductModal,
   YieldStat,
   AddAreaDetails,
+  AreaDetails
 } from "../components/Interface";
 import axios from "axios";
 
@@ -33,9 +34,9 @@ class AgriImpex {
       AreaName: "",
       TotalHectare: 0,
       TotalHectareRef: "Acre",
-      Plantation: [{ Crop: "Banana", PlantationCapacity: 0 }],
+      Plantation: [],
       Crop: "Banana",
-        PlantationCapacity: 0,
+      PlantationCapacity: 0,
       Owner: "",
       Contactno: 12345678,
       Email: "",
@@ -44,7 +45,17 @@ class AgriImpex {
       District: "",
       Pincode: 0,
       Address: "",
+      Createdby: "karthi.hifi@gmail.com"
     };
+  }
+
+  AddNewArea(Area: AddAreaDetails): Promise<any> {
+    let AreaDetails: AreaDetails = { ...Area }
+    console.log(AreaDetails,"Area Details")
+    return axios.post(
+      "https://us-central1-agriexp-db.cloudfunctions.net/app/NewArea",
+      AreaDetails
+    );
   }
 
   AddNewProduct(Product: AddProductModal): Promise<any> {

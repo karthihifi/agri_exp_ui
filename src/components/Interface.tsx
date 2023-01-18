@@ -61,4 +61,23 @@ export interface AddAreaDetails {
   District: String;
   Pincode: Number;
   Address: String;
+  Createdby: String;
+}
+
+export interface AreaDetails {
+  AreaID: String;
+  Zone: String;
+  AreaName: String;
+  TotalHectare: Number;
+  TotalHectareRef: String;
+  Plantation: Plantation[];
+  Owner: String;
+  Contactno: Number;
+  Email: String;
+  Village: String;
+  TownPanchayat: String;
+  District: String;
+  Pincode: Number;
+  Address: String;
+  Createdby: String;
 }
