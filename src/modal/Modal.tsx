@@ -3,7 +3,8 @@ import {
   AddProductModal,
   YieldStat,
   AddAreaDetails,
-  AreaDetails
+  AreaDetails,
+  YieldOvwData
 } from "../components/Interface";
 import axios from "axios";
 
@@ -12,6 +13,7 @@ class AgriImpex {
   currentSeason: string;
   defaultProductData: AddProductModal;
   defaultAreaDetails: AddAreaDetails;
+  defaultYieldOveData: YieldOvwData;
   constructor() {
     let currentYear = new Date().getFullYear();
     let prevYear = new Date().getFullYear() - 1;
@@ -47,11 +49,32 @@ class AgriImpex {
       Address: "",
       Createdby: "karthi.hifi@gmail.com"
     };
+    this.defaultYieldOveData = {
+      YieldData: [{
+        Season: "2022-2023", ProductCount: 1,
+        ProductData: [{ Product: "Banana", AvgLeavesCount: 1, AvgLength: 2, AvgWeight: 4, NetWeight: 4, TotalCount: 3 }]
+      }],
+      AllData: [{
+        Area: "",
+        Product: "Banana",
+        Variety: "Cavendish",
+        NetWeight: 0,
+        NetWeightRef: "Kg",
+        Season: prevYear + "-" + currentYear,
+        //  SeasonRefid : "z9UFALlRGQS6ZtEnHlbB",
+        //  NoofLeaves: 0,
+        //  Length: 0,
+        //  StemWeight: 0,
+        Createdon: new Date(),
+        id: "122",
+        Length: 1
+      }]
+    }
   }
 
   AddNewArea(Area: AddAreaDetails): Promise<any> {
     let AreaDetails: AreaDetails = { ...Area }
-    console.log(AreaDetails,"Area Details")
+    console.log(AreaDetails, "Area Details")
     return axios.post(
       "https://us-central1-agriexp-db.cloudfunctions.net/app/NewArea",
       AreaDetails

@@ -18,6 +18,38 @@ export interface RespData {
   SeasonRefid: GUID;
 }
 
+export interface RespData1 {
+  id: String;
+  Season: String;
+  Area: String;
+  Product: String;
+  Variety: String;
+  NetWeight: Number;
+  Length:Number;
+  NetWeightRef: String;
+  Createdon: Date;
+}
+
+export interface YieldProdData {
+  Product: String;
+  TotalCount: Number;
+  NetWeight: Number;
+  AvgWeight: Number;
+  AvgLeavesCount: Number;
+  AvgLength: Number;
+}
+
+export interface YieldData {
+  Season: String;
+  ProductCount: Number;
+  ProductData: YieldProdData[]
+}
+
+export interface YieldOvwData {
+  YieldData: YieldData[];
+  AllData: RespData1[]
+}
+
 export interface YieldStat {
   id: GUID;
   Season: String;

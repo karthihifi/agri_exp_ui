@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { YieldStat, RespData } from "./components/Interface";
+import { YieldStat, RespData, YieldOvwData } from "./components/Interface";
 import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
@@ -27,7 +27,7 @@ function App() {
   const [locale, setLocale] = useState("en");
   const [messages, setMessages] = useState(English);
 
-  const [YieldStat, setYieldStat] = useState<YieldStat[]>([]);
+  const [YieldStat, setYieldStat] = useState<YieldOvwData>(AgriImpexref.defaultYieldOveData);
   const [UserName, setUserName] = React.useState("");
   const [CurrSeason, setCurrSeason] = React.useState(
     AgriImpexref.currentSeason
@@ -48,7 +48,7 @@ function App() {
 
     axios.all([axiosrequest1, axiosrequest2]).then(
       axios.spread(function (res1, res2) {
-        let ProductsData: YieldStat[] = res1.data;
+        let ProductsData: YieldOvwData = res1.data;
         setYieldStat(ProductsData);
         console.log(res1);
         console.log(res2);

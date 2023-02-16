@@ -1,5 +1,5 @@
 import * as React from "react";
-import { YieldStat, RespData } from "./Interface";
+import { YieldStat, RespData,YieldOvwData } from "./Interface";
 import Container from "react-bootstrap/Container";
 import ResponsiveAppBar from "../components/AppBar";
 import {
@@ -15,7 +15,7 @@ import Footer from "./footer";
 interface YieldProductStatsProps {
   handleMassUplModalOpen: () => void;
   setMessages: (locale: any) => void;
-  ProductData: YieldStat[];
+  ProductData: YieldOvwData;
 }
 const columns: GridColDef[] = [
   {
@@ -92,7 +92,7 @@ const YieldProductStats: React.FC<YieldProductStatsProps> = (props) => {
       <Container>
         <div style={{ height: 400, width: "100%" }}>
           <DataGrid
-            rows={props.ProductData}
+            rows={props.ProductData.AllData}
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
