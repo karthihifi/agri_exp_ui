@@ -17,6 +17,7 @@ import { IntlProvider } from "react-intl";
 import Tamil from "./lang/ta.json";
 import English from "./lang/en.json";
 import AgriImpex from "./modal/Modal";
+import YieldOvwCollapseTbl from "./components/YieldOvwCollapseTbl"
 
 import { Route, Routes, Link, BrowserRouter as Router } from "react-router-dom";
 
@@ -87,7 +88,7 @@ function App() {
               }
             ></Route>
             {/* <Route path="/" element={<Main></Main>}></Route> */}
-            <Route
+            {/* <Route
               path="/"
               element={
                 <YieldProductStats
@@ -95,6 +96,17 @@ function App() {
                   setMessages={setMessages}
                   ProductData={YieldStat}
                 ></YieldProductStats>
+              }
+            /> */}
+
+            <Route
+              path="/"
+              element={
+                <YieldOvwCollapseTbl
+                  handleMassUplModalOpen={handleMassUplModalOpen}
+                  setMessages={setMessages}
+                  ProductData={YieldStat}
+                ></YieldOvwCollapseTbl>
               }
             />
             <Route
